@@ -1,0 +1,168 @@
+<?php $__env->startSection('title', 'KMS — Portfolio & Blog'); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<section class="hero container">
+  <div>
+    <span class="hero__kicker">$ ./demarrer-portfolio.sh</span>
+    <h1>Je conçois des <span class="hero__accent">applications web &amp; mobiles</span> pensées pour durer.</h1>
+    <p class="hero__lead">
+      Je suis SODEHOUNDJI Koffi Mokpokpo, étudiant en Génie Informatique, option développement des applications, basé à Lomé.
+      J'apprends et je construis : sites web, applications mobiles, et tout ce qui
+      se trouve entre le code et l'électronique.
+    </p>
+    <div class="btn-row">
+      <a href="<?php echo e(route('projects.index')); ?>" class="btn btn--primary">Voir mes projets</a>
+      <a href="<?php echo e(route('contact.show')); ?>" class="btn btn--ghost">Me contacter</a>
+    </div>
+    <div class="hero__meta">
+      <span>📍 Lomé, Togo</span>
+      <span>🎓 Génie Informatique — IAEC</span>
+      <span>💼 Disponible pour des projets</span>
+    </div>
+  </div>
+
+  <div class="terminal" aria-hidden="true">
+    <div class="terminal__bar">
+      <span class="terminal__dot terminal__dot--red"></span>
+      <span class="terminal__dot terminal__dot--amber"></span>
+      <span class="terminal__dot terminal__dot--green"></span>
+      <span class="terminal__title">koffi@kms — zsh</span>
+    </div>
+    <div class="terminal__body">
+      <div class="terminal__line"><span class="terminal__prompt">$</span> whoami</div>
+      <div class="terminal__line"><span class="terminal__val">Koffi Mokpokpo SODEHOUNDJI</span></div>
+      <div class="terminal__line"><span class="terminal__prompt">$</span> cat role.txt</div>
+      <div class="terminal__line"><span class="terminal__val">Développeur web & mobile | Étudiant IAEC</span></div>
+      <div class="terminal__line"><span class="terminal__prompt">$</span> ls ./competences</div>
+      <div class="terminal__line">
+        <?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><span class="terminal__tag"><?php echo e($skill->name); ?></span><?php if(!$loop->last): ?>&nbsp;&nbsp;<?php endif; ?> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+      </div>
+      <div class="terminal__line"><span class="terminal__prompt">$</span> echo $STATUS<span class="terminal__cursor"></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container grid--3 grid">
+    <div class="card reveal">
+      <h3 style="font-size:1.05rem;">🎓 Formation</h3>
+      <p>Génie Informatique, option développement des applications, à l'IAEC de Lomé.</p>
+    </div>
+    <div class="card reveal">
+      <h3 style="font-size:1.05rem;">🛠️ Stack</h3>
+      <p>Laravel, Flutter, Symfony, Django — du web au mobile, avec une bonne base en C/C++ et électronique.</p>
+    </div>
+    <div class="card reveal">
+      <h3 style="font-size:1.05rem;">🤝 Leadership</h3>
+      <p>Responsable sportif au Bureau des Étudiants de l'IAEC — travail d'équipe et gestion de projets.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">competences</p>
+      <h2>Quelques outils que j'utilise au quotidien</h2>
+      <p>Un aperçu de ma stack technique — le détail complet est sur la page À propos.</p>
+    </div>
+
+    <div class="reveal" style="max-width:640px;">
+      <?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+      <div class="skill">
+        <span class="skill__name"><?php echo e($skill->name); ?></span>
+        <span class="skill__track"><span class="skill__fill" data-level="<?php echo e($skill->level); ?>"></span></span>
+        <span class="skill__value"><?php echo e($skill->level); ?>%</span>
+      </div>
+      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+
+    <div class="btn-row">
+      <a href="<?php echo e(route('about')); ?>" class="btn btn--ghost">Voir tout mon profil →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">projets</p>
+      <h2>Projets en vedette</h2>
+      <p>Une sélection de réalisations — toutes ne sont pas encore en ligne, mais le portfolio s'enrichit régulièrement.</p>
+    </div>
+
+    <div class="grid grid--3">
+      <?php $__empty_1 = true; $__currentLoopData = $projects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+      <article class="card project-card reveal">
+        <div class="project-card__media">
+          <?php if($project->image): ?>
+            <img src="<?php echo e(Storage::url($project->image)); ?>" alt="Capture d'écran du projet <?php echo e($project->title); ?>">
+          <?php else: ?>
+            <span class="project-card__initials"><?php echo e(substr($project->title, 0, 2)); ?></span>
+          <?php endif; ?>
+        </div>
+        <div class="project-card__body">
+          <h3><a href="<?php echo e(route('projects.show', $project)); ?>"><?php echo e($project->title); ?></a></h3>
+          <p><?php echo e($project->short_description); ?></p>
+          <ul class="tag-list">
+            <?php $__currentLoopData = array_slice($project->technology_list, 0, 3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><li class="tag"><?php echo e($tech); ?></li><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+          </ul>
+        </div>
+      </article>
+      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+      <div class="empty-state" style="grid-column: 1/-1;">
+        Aucun projet publié pour l'instant — les premiers projets seront ajoutés ici très prochainement.
+      </div>
+      <?php endif; ?>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">blog</p>
+      <h2>Derniers articles</h2>
+      <p>Notes de veille technologique et retours d'expérience sur mes projets.</p>
+    </div>
+
+    <div class="grid grid--3">
+      <?php $__empty_1 = true; $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+      <article class="card post-card reveal">
+        <div class="post-card__media">
+          <?php if($post->cover_image): ?><img src="<?php echo e(Storage::url($post->cover_image)); ?>" alt=""><?php endif; ?>
+        </div>
+        <div class="post-card__body">
+          <div class="post-card__meta">
+            <span class="badge"><?php echo e($post->category->name ?? 'Article'); ?></span>
+            <span><?php echo e($post->published_at); ?></span>
+          </div>
+          <h3><a href="<?php echo e(route('blog.show', $post)); ?>"><?php echo e($post->title); ?></a></h3>
+          <p><?php echo e($post->excerpt); ?></p>
+          <a class="post-card__link" href="<?php echo e(route('blog.show', $post)); ?>">Lire l'article →</a>
+        </div>
+      </article>
+      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+      <div class="empty-state" style="grid-column: 1/-1;">
+        Aucun article publié pour le moment. Le premier arrive bientôt !
+      </div>
+      <?php endif; ?>
+    </div>
+  </div>
+</section>
+
+<section class="section--tight">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>Un projet en tête ?</h2>
+        <p>Discutons de votre idée, je serai ravi d'échanger avec vous.</p>
+      </div>
+      <a href="<?php echo e(route('contact.show')); ?>" class="btn btn--primary">Écrire un message</a>
+    </div>
+  </div>
+</section>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\ACCENT W5000\kms_laravel\resources\views/home.blade.php ENDPATH**/ ?>
